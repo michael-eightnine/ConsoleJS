@@ -1,0 +1,51 @@
+.console-js-terminal:not(.unstyled) {
+	height: 100%;
+	max-height: 100vh;
+	box-sizing: border-box;
+
+	* { box-sizing: border-box; }
+
+	.intro-text {
+		padding-right: 40px;
+		position: relative;
+	}
+
+	.minimize-button {
+		display: block;
+		height: 30px;
+		width: 30px;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	//CARET
+	.before {
+		height: 31px;
+		position: relative;
+		top: -1px;
+		cursor: pointer;
+	}
+
+	.terminal-history-container {
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	input {
+		position: relative;
+		top: -1px;
+		background-color: transparent;
+		border: none;
+		outline: none;
+		width: calc(100% - 150px);
+	}
+
+	//MINIMIZED VIEW
+	&.minimize {
+		overflow: hidden;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+	}
+}

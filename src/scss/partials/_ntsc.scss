@@ -1,0 +1,93 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:700);
+$ntscFont: 'Inconsolata';
+$ntscShadow: 1px 1px 0px magenta, -1px -1px 0px cyan;
+$ntscShadowVert: 0 1px 0px magenta, 0 -1px 0px cyan;
+$ntscFontSize: 28px;
+$ntscMinimizeFontSize: 20px;
+$ntscMinimizeHeight: 50px;
+
+.console-js-terminal:not(.unstyled).ntsc {
+	font-family: $ntscFont;
+	text-shadow: $ntscShadow;
+	color: white;
+	font-size: $ntscFontSize;
+	padding: 40px;
+	background-color: black;
+	transition: height .5s ease;
+		-webkit-transition: height .5s ease;
+
+	//minimize button
+	.minimize-button {
+		border: 3px solid white;
+		box-shadow: $ntscShadow;
+		top: 1px;
+
+		&:after {
+			content: '';
+			display: block;
+			width: 16px;
+			height: 3px;
+			position: absolute;
+			left: 50%;
+			margin-left: -8px;
+			bottom: 5px;
+			background-color: #fff;
+			box-shadow: $ntscShadowVert;
+		}
+	}
+
+	.terminal-history-scroll-wrap {
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.terminal-history-container {
+		width: calc(100% + 17px);
+		overflow-y: scroll;
+		max-height: calc(100vh - 185px);
+		margin: 10px 0;
+	}
+
+	//general entry/command history styling
+	p {
+		margin: 0 0 5px 0;
+		min-height: 31px;
+	}
+
+	//input styling
+	input {
+		font-family: $ntscFont;
+		font-size: $ntscFontSize;
+		text-shadow: $ntscShadow;
+		color: white;
+		padding-left: 14px;
+	}
+
+	//MINIMIZE STYLES
+	&.minimize {
+		font-size: $ntscMinimizeFontSize;
+		padding: 15px;
+		height: $ntscMinimizeHeight;
+
+		//things to hide when minimized
+		.terminal-input-container, .terminal-history-container, .instruction-text {
+			display: none;
+		}
+
+		//minimize button now looks like a maximize
+		.minimize-button{
+			height: 20px;
+			width: 20px;
+			border-width: 2px;
+
+			&:after {
+				width: 8px;
+				height: 8px;
+				margin-left: -4px;
+				top: 50%;
+				margin-top: -4px;
+			}
+		}
+
+	}
+}
