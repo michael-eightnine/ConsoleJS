@@ -1,11 +1,13 @@
-# consoleJS
-Vanilla JavaScript plugin for building an old-school console interface that runs custom defined commands and actions.
+[![consoleJS — An Easily Configurable Vanilla JS Console Plugin](http://eightnine.co/consoleJS/assets/git-header.png)](#)
 
-Currently comes with 2 themes, and the ability to create your own via the source SCSS files or via the "unstyled" attribute.
+consoleJS is a JavaScript plugin for building an old-school console interface that runs custom defined commands and actions. Originally intended as a navigational interface for a personal blog I was building, I saw it could be built out to accept configurations with relative ease. Admittedly there aren't a ton of practical applications, but hey, the web can't all be productivity tools and MVC frameworks!
 
-- No dependencies!
+- No dependencies
+- SCSS files provided for easy theming
 - 1.9KB minified and Gzipped
 - Brought to you by [Michael Smith](http://www.eightnine.co/smith)
+
+**DEMO COMING SOON!**
 
 ## 1. Getting Started
 
@@ -18,7 +20,10 @@ The recommended way to get up and running with consoleJS is to load the consoleJ
 <script src="path/to/script/intializationScript.js"></script>
 ```
 
+If you would like to use any of the out-of-box themes, make sure you also include the `console-js.min.css` file before your closing `</head>` tag.
+
 **Please note:** the script you use to initialize your console must be after the plugin script import.
+
 
 ### 1.2. Basics
 
@@ -65,10 +70,12 @@ Running the code above would generate a new consoleJS instance that accepts the 
 
 ### 2.1. Default Options
 ```js
-// Accepts the ID of a DOM element for the console to be created within, if 'null' appends console to the document's body
+// Accepts the ID of a DOM element for the console to be created within
+// If 'null' then console is appended to the document's body
 consoleContainer: null,
 
-// Theme options: "ntsc", "windows95". Pass a different class name to build your own theme or pass "unstyled" to remove all default styling
+// Theme options: "ntsc", "windows95", "unstyled".
+// Pass a different class name to build your own theme
 theme: "ntsc"
 
 // Accepts any string - this is the "header" text on the console window
@@ -83,19 +90,24 @@ consoleCaret: "// >",
 // Accepts any string - this text is shown to the user when they have entered an invalid command
 invalidCommandText: "command not recognized",
 
-// Accepts an integer - this is the amount of delay (in milliseconds) used when typing responses to the user
+// Accepts an integer - this is the amount of delay (in milliseconds)
+// used when typing responses to the user
 typingInterval: 50,
 
-// Accepts a boolean - if true allows users to use the up and down arrow keys to select previously inputted commands
+// Accepts a boolean - if true allows users to use the up and down arrow keys
+// to select previously inputted commands
 commandHistory: true,
 
-//Accepts an integer - number of commands to save in the command history (only useful if commandHistory is true)
+// Accepts an integer - number of commands to save in the command history
+// (only useful if commandHistory is true)
 commandHistoryCap: 5,
 
-//Accepts a boolean - set to false to disabled the default commands of "list", "minimize", and "maximize"
+// Accepts a boolean - set to false to disabled the default commands:
+// "list", "minimize", and "maximize"
 enableDefaultCommands: true,
 
-//Accepts an array of command objects - this is where you place the actions and commands of your console
+// Accepts an array of command objects
+// this is where you place the actions and commands of your console
 commands: []
 
 ```
@@ -118,10 +130,12 @@ commands: [
 		// Accepts a string - this will print when your use requests the man page for this command
 		description: "a description of what your command does and any other useful information",
 
-		// Accepts a string - this is what the console will respond to the user with - leave blank for no response
+		// Accepts a string - this is what the console will respond to the user with
+		// leave blank for no response
 		response: "hey, you ran the command"
 
-		// Accepts the name of another custom command - indicates the "requires" command must be run prior to running this command
+		// Accepts the name of another custom command -
+		// indicates the "requires" command must be run prior to running this command
 		requires: "previous command"
 	}
 ]
@@ -169,3 +183,12 @@ Minimizes the console window (assuming it isn't already)
 ##### `myConsole.maximize()`
 
 Maximizes the console window (assuming it isn't already)
+
+## 4. Appendix
+Open source under the [MIT License](https://github.com/michael-eightnine/consoleJS/blob/master/LICENSE.md).
+
+### 4.1. Issues and Bug Reporting
+Please feel free to file any bugs or issues you might find, however please note that this is a side project and I cannot promise quick bug resolution.
+
+### 4.2. Special Thanks
+Special thanks goes out to Rochad Tlusty and Joseph Mueller for brainstorming sessions and listening to me ramble about this plugin while I was building it.
