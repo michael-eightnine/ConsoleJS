@@ -19,13 +19,13 @@
 	}
 
 	//*** CONSTRUCTOR ***
-	this.Terminal = function() {
+	this.Console = function() {
 		this.terminal = null;
 		this.inputBox = null;
 		this.minimizeButton = null;
 
 		var defaults = {
-			terminalContainer: null,
+			consoleContainer: null,
 			theme: "ntsc",
 			introText: "[ -- Console.JS -- ]",
 			instructionText: ":: Input 'list' for commands -- Append 'man' to a command for description ::",
@@ -108,8 +108,8 @@
 			this.terminal.appendChild(inputContainer);
 
 		base.appendChild(this.terminal);
-		if(this.options.terminalContainer != null) {
-			var insertInto = document.getElementById(this.options.terminalContainer);
+		if(this.options.consoleContainer != null) {
+			var insertInto = document.getElementById(this.options.consoleContainer);
 			insertInto.appendChild(base)
 		}
 		else {
@@ -195,11 +195,11 @@
 					listCommands();
 					break;
 				case "minimize":
-					Terminal.prototype.minimize.call(this);
+					Console.prototype.minimize.call(this);
 					respond(null, userCommand);
 					break;
 				case "maximize":
-					Terminal.prototype.maximize.call(this);
+					Console.prototype.maximize.call(this);
 					respond(null, userCommand);
 					break;
 			}
@@ -234,6 +234,10 @@
 				return;
 			}
 		}
+
+		//catch all for incorrect commands
+		respond(optionsList.invalidCommandText, userCommand);
+		updateHistory(userCommand);
 	}
 
 	function runCommand(action) {
@@ -308,25 +312,25 @@
 	}
 
 	//*** PUBLIC METHODS ***
-	Terminal.prototype.build = function() {
+	Console.prototype.build = function() {
 		createTerminal.call(this);
 		attachInput.call(this);
 		attachMin.call(this);
 	}
 
-	Terminal.prototype.maximize = function() {
+	Console.prototype.maximize = function() {
 		var terminal = document.getElementById("consoleJsTerminal");
 		if(terminal.classList.contains("minimize"))
 			terminal.classList.remove("minimize");
 	}
 
-	Terminal.prototype.minimize = function() {
+	Console.prototype.minimize = function() {
 		var terminal = document.getElementById("consoleJsTerminal");
 		if(!terminal.classList.contains("minimize"))
 			terminal.classList.add("minimize");
 	}
 
-	Terminal.prototype.pushCommand = function(newCommand) {
+	Console.prototype.pushCommand = function(newCommand) {
 		if(typeof(newCommand) === "object") {
 			for (var i = 0, len = commandList.length; i < len; i++) {
 				if(newCommand.command.toLowerCase() == commandList[i].command.toLowerCase()) {
@@ -341,7 +345,7 @@
 		}
 	}
 
-	Terminal.prototype.removeCommand = function(removeThis) {
+	Console.prototype.removeCommand = function(removeThis) {
 		for (var i = 0, len = commandList.length; i < len; i++) {
 			if(removeThis.toLowerCase() == commandList[i].command.toLowerCase()) {
 				var index = i;
@@ -355,11 +359,11 @@
 		}
 	}
 
-	Terminal.prototype.getCommands = function() {
+	Console.prototype.getCommands = function() {
 		return commandList;
 	}
 
-	Terminal.prototype.clearHistory = function(includeCommandHistory) {
+	Console.prototype.clearHistory = function(includeCommandHistory) {
 		var historyContainer = document.getElementById("terminalHistoryContainer");
 		while (historyContainer.firstChild) {
 			historyContainer.removeChild(historyContainer.firstChild);
@@ -368,7 +372,7 @@
 			commandHistory = [];
 	}
 
-	Terminal.prototype.pushMessage = function(message) {
+	Console.prototype.pushMessage = function(message) {
 		respond(message, null);
 	}
 

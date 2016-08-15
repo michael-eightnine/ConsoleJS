@@ -234,6 +234,10 @@
 				return;
 			}
 		}
+
+		//catch all for incorrect commands
+		respond(optionsList.invalidCommandText, userCommand);
+		updateHistory(userCommand);
 	}
 
 	function runCommand(action) {
